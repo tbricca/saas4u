@@ -11,13 +11,25 @@ import IconCard from "./components/Card/IconCard";
 import ImageHero from "./components/Hero/ImageHero";
 import SplitHero from "./components/Hero/SplitHero";
 import TextHero from "./components/Hero/TextHero";
+import { Nav } from '@/components/Navigation';
+
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+
+// Initialize Builder.io on the client side
+if (typeof window !== 'undefined') {
+  builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+}
 
 // Optional: Dynamic blog header
 if (typeof window !== "undefined") {
   const BlogHeader = dynamic(() => import("./components/BlogHeader"), {
     ssr: false,
+  });
+
+  Builder.registerComponent(Nav, {
+    name: 'Nav',
+   
   });
 
   Builder.registerComponent(BlogHeader, {
