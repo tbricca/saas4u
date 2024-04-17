@@ -19,14 +19,14 @@ Builder.registerComponent(Nav, {
   name: 'Nav',
 });
 
-Builder.registerComponent(HeroSection, {
-  name: 'HeroSection',
-  inputs: [
-    { name: 'title', type: 'text' },
-    { name: 'description', type: 'text' },
-    { name: 'image', type: 'file' }
-  ]
-});
+// Builder.registerComponent(HeroSection, {
+//   name: 'HeroSection',
+//   inputs: [
+//     { name: 'title', type: 'text' },
+//     { name: 'description', type: 'text' },
+//     { name: 'image', type: 'file' }
+//   ]
+// });
 
 
 
