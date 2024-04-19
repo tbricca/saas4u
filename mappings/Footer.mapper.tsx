@@ -1,5 +1,5 @@
 import { figmaMapping, type BaseFigmaProps } from "@builder.io/dev-tools/figma";
-import { Footer } from "@/components/Layout/Footer";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,

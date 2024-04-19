@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { LocaleProvider } from "../context/LocaleContext";
 import { Nav } from "@/components/Navigation";
+import { Footer } from "../components/Footer";
 import '../builder-registry';
 
 // Add this to force client-side rendering for Builder content
@@ -17,8 +18,8 @@ const DynamicBuilderContent = dynamic(
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SaaS4U - Developer-Friendly SaaS Platform",
-  description: "SaaS4U is a developer-friendly SaaS platform that collects AI-supported customer data globally. Modern cloud-hosted solution for developers.",
+  title: "SaaS4U - Unleash the Beast",
+  description: "SaaS4U - It's not just Code. It's a Creature.",
 };
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
@@ -38,18 +39,18 @@ export default async function RootLayout({
        
         <LocaleProvider>
           <QueryProvider>
-            <main>
-         
-            
+            <div className="flex flex-col min-h-screen">
               <Nav />
-              {bannerContent && <DynamicBuilderContent model="banner" content={bannerContent} />}
-              {pageContent ? (
-                <DynamicBuilderContent model="page" content={pageContent} />
-              ) : (
-                <div className="container">{children}</div>
-              )}
-              {/* {footerContent && <DynamicBuilderContent model="footer" content={footerContent} />} */}
-            </main>
+              <main className="flex-grow">
+                {bannerContent && <DynamicBuilderContent model="banner" content={bannerContent} />}
+                {pageContent ? (
+                  <DynamicBuilderContent model="page" content={pageContent} />
+                ) : (
+                  <div className="container">{children}</div>
+                )}
+              </main>
+              <Footer />
+            </div>
           </QueryProvider>
         </LocaleProvider>
       

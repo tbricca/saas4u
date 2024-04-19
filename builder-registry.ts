@@ -4,7 +4,7 @@ import "@builder.io/widgets";
 import { builder, Builder, withChildren } from "@builder.io/react";
 import { Button } from "./components/ui/button";
 import Counter from "./components/Counter/Counter";
-import Footer from "./components/Layout/Footer";
+import Footer from "./components/Footer";
 
 import HeroWithChildren from "./components/Hero/HeroWithChildren";
 import IconCard from "./components/Card/IconCard";
