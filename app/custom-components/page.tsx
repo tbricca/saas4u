@@ -1,29 +1,32 @@
-// app/[...page]/page.tsx
 import { builder } from "@builder.io/sdk";
 import { RenderBuilderContent } from "../../components/builder";
-import { notFound } from "next/navigation";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
-interface Props {
-  params: { page?: string[] };
+interface PageProps {
+  params: {
+    page: string[];
+  };
 }
 
-export default async function Page({ params }: Props) {
-  const builderModelName = "figma-imports";
-  const urlPath = "/" + (params?.page?.join("/") || "");
-
-  console.log("🛠 Rendering page for:", urlPath);
+export default async function Page(props: PageProps) {
+  const builderModelName = "page";
 
   const content = await builder
+    // Get the page content from Builder with the specified options
     .get(builderModelName, {
-      userAttributes: { urlPath },
+      userAttributes: {
+        // Use the page path specified in the URL to fetch the content
+        urlPath: "/" + (props?.params?.page?.join("/") || "")
+      },
     })
+    // Convert the result to a promise
     .toPromise();
 
-  if (!content) {
-    notFound();
-  }
-
-  return <RenderBuilderContent model={builderModelName} content={content} />;
+  return (
+    <>
+      {/* Render the Builder page */}
+      <RenderBuilderContent content={content} model={builderModelName} options={{ enrich: true }} />
+    </>
+  );
 }
