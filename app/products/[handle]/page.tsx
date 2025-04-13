@@ -2,6 +2,7 @@
 import ProductDetails from "@/components/PDP/ProductDetails";
 import { builder } from "@builder.io/sdk";
 import { RenderBuilderContent } from "@/components/builder";
+import "@/builder-registry"
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
