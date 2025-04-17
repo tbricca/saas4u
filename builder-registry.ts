@@ -4,14 +4,29 @@ import { builder, Builder, withChildren } from "@builder.io/react";
 import { Button } from "./components/ui/button";
 import Counter from "./components/Counter/Counter";
 import Footer from "./components/Layout/Footer";
-import { Header } from "./components/Layout/Header";
+
 import HeroWithChildren from "./components/Hero/HeroWithChildren";
 import IconCard from "./components/Card/IconCard";
 import ImageHero from "./components/Hero/ImageHero";
 import SplitHero from "./components/Hero/SplitHero";
 import TextHero from "./components/Hero/TextHero";
+import dynamic from "next/dynamic";
+import { HeaderLocale } from "./components/Custom/Header-Locale";
+
+Builder.registerComponent(HeaderLocale, {
+  name: "HeaderLocale",
+});
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+
+// LocaleSelector dropdown
+Builder.registerComponent(
+  dynamic(() => import("./components/Custom/LocaleSelector")),
+  {
+    name: "LocaleSelector",
+    noWrap: true,
+  }
+);
 
 Builder.register("editor.settings", {
   styleStrictMode: false,
@@ -320,11 +335,7 @@ Builder.registerComponent(withChildren(HeroWithChildren), {
       hideFromUI: true,
       defaultValue: [],
     },
-    {
-      name: "header",
-      type: "string",
-      defaultValue: "WHAT'S DIFFERENT ABOUT SHOPAHOLIC",
-    },
+    
     {
       name: "makeFullBleed",
       type: "boolean",
@@ -372,6 +383,3 @@ Builder.registerComponent(Footer, {
   name: "Footer",
 });
 
-Builder.registerComponent(Header, {
-  name: "Header",
-});

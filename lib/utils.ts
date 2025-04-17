@@ -46,8 +46,8 @@ export function getBuilderApiKey(hostlist:any) {
   const hostPrefix = host.split(/[-:]/)[0];
 
   switch (hostPrefix) {
-    case 'tim': return '50b344f9116e4820a020e382058146e0';
-    case 'localhost': return 'a87584e551b6472fa0f0a2eb10f2c0ff';
-    default: return 'a87584e551b6472fa0f0a2eb10f2c0ff'
+    case 'tim': return 'cb94b65cdbd14972943dfc8c56a519fa';
+    case 'localhost': return 'cb94b65cdbd14972943dfc8c56a519fa';
+    default: return 'cb94b65cdbd14972943dfc8c56a519fa'
   }
 }
