@@ -1,5 +1,5 @@
 import { figmaMapping, type BaseFigmaProps } from "@builder.io/dev-tools/figma";
-import { ImageHero } from "@/components/Hero/ImageHero";
+import ImageHero from "@/components/Hero/ImageHero";
 
 // ❖ Hero
 interface FigmaHeroProps extends BaseFigmaProps {
