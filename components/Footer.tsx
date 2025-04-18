@@ -2,8 +2,13 @@
 
 import Link from 'next/link';
 import { Builder } from '@builder.io/react';
+import { ReactNode } from 'react';
 
-export const Footer = () => {
+interface FooterProps {
+  children?: ReactNode;
+}
+
+export const Footer = ({ children }: FooterProps) => {
   const footerContent = {
     links: [
       { label: 'Home', url: '/' },
@@ -51,6 +56,7 @@ export const Footer = () => {
   return (
     <footer className="bg-black text-white">
       <div className="container mx-auto px-4 py-12">
+        {children}
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}

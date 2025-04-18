@@ -23,36 +23,28 @@ export default figmaMapping({
 
     return (
       <Footer>
-        <div className="footer-content">
-          {/* Logo Section */}
-          <div className="footer-logo">{logo}</div>
-
-          {/* Description Section */}
-          <div className="footer-description">{description}</div>
-
-          {/* Navigation Menu */}
-          <NavigationMenu>
-            <NavigationMenuList>
-              {menuOptions?.$children.map(
-                (item) =>
-                  item?.$type === "TEXT" && (
-                    <NavigationMenuItem>
-                      <NavigationMenuLink href="#">
-                        {item.$textContent}
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  ),
-              )}
-            </NavigationMenuList>
-          </NavigationMenu>
-
-          {/* Actions Section */}
-          <div className="footer-actions">
-            <Button variant="ghost">
-              {figma.$findOneByName("SIGN IN")?.$textContent}
-            </Button>
+        {description && (
+          <div className="footer-content mb-8">
+            {logo && <div className="footer-logo text-xl font-semibold mb-4">{logo}</div>}
+            <div className="footer-description text-gray-400">{description}</div>
+            {menuOptions && (
+              <NavigationMenu className="mt-6">
+                <NavigationMenuList>
+                  {menuOptions.$children.map(
+                    (item, index) =>
+                      item?.$type === "TEXT" && (
+                        <NavigationMenuItem key={index}>
+                          <NavigationMenuLink href="#" className="text-gray-400 hover:text-white transition-colors">
+                            {item.$textContent}
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )
+                  )}
+                </NavigationMenuList>
+              </NavigationMenu>
+            )}
           </div>
-        </div>
+        )}
       </Footer>
     );
   },
