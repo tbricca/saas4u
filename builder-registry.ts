@@ -2,12 +2,12 @@
 
 import "@builder.io/widgets";
 import { builder, Builder } from "@builder.io/react";
-
+// import { Button } from "./components/ui/button";
 
 import IconCard from "./components/Card/IconCard";
 
-
-
+// import { ArticleContent } from "./components/ArticleContent";
+import { HeroSection } from "./components/HeroSection";
 import { Nav } from '@/components/Navigation';
 
 // Initialize Builder.io on the client side
@@ -19,16 +19,21 @@ Builder.registerComponent(Nav, {
   name: 'Nav',
 });
 
-// Builder.registerComponent(HeroSection, {
-//   name: 'HeroSection',
+Builder.registerComponent(HeroSection, {
+  name: 'HeroSection',
+  inputs: [
+    { name: 'title', type: 'text' },
+    { name: 'description', type: 'text' },
+    { name: 'image', type: 'file' }
+  ]
+});
+
+// Builder.registerComponent(ArticleContent, {
+//   name: 'ArticleContent',
 //   inputs: [
-//     { name: 'title', type: 'text' },
-//     { name: 'description', type: 'text' },
-//     { name: 'image', type: 'file' }
-//   ]
+//     { name: 'content', type: 'longText' }
+// //   ]
 // });
-
-
 
 Builder.registerComponent(IconCard, {
   name: 'IconCard',

@@ -1,4 +1,4 @@
-
+// components/Nav.tsx
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -8,59 +8,49 @@ import LocaleSwitcher from './LocaleSwitcher';
 export const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Default static content
+  // Updated navigation content to match the image
   const navContent = {
-    logo: 'https://cdn.builder.io/api/v1/image/assets%2Ff88d5a483d6e42bb9e7990f41fc9afdf%2F56f6f2dbb0dd44b4828c83a9d1343ff7',
+    logo: 'SaaS4U',
     links: [
-      { label: 'Product', url: '/product' },
-      { label: 'Solutions', url: '/solutions' },
-      { label: 'Resources', url: '/resources' },
-      { label: 'Pricing', url: '/pricing' }
+      { label: 'Home', url: '/' },
+      { label: 'About', url: '/about' },
+      { label: 'Blog', url: 'https://saas4u.vercel.app//en-US/blog-post' },
+      { label: 'Contact', url: '/contact' }
     ],
-    ctaText: 'Request Demo',
-    loginText: 'Login'
+    loginText: 'Dashboard'
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="container mx-auto px-4 py-2">
+    <nav className="sticky top-0 z-50 bg-black text-white">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img 
-              src={navContent.logo}
-              alt="Logo"
-              className="h-20 w-auto -my-2"
-            />
+          <Link href="/" className="flex items-center text-xl font-semibold">
+            {navContent.logo}
           </Link>
 
-          {/*  Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
             {navContent.links.map((link, index) => (
               <Link
                 key={index}
                 href={link.url}
-                className="text-gray-600 hover:text-indigo-600 transition-colors"
+                className="text-white hover:text-gray-300 transition-colors"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="h-6 w-px bg-gray-300" />
-            <LocaleSwitcher />
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
-            <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg">
-              {navContent.ctaText}
-            </button>
-            <div className="h-6 w-px bg-gray-300" />
-            <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg">
+          <div className="hidden md:flex items-center space-x-6">
+            <LocaleSwitcher />
+            <button className="text-white hover:text-gray-300 transition-colors border border-white px-4 py-2 rounded">
               {navContent.loginText}
             </button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,25 +61,22 @@ export const Nav = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 space-y-4">
+          <div className="md:hidden mt-4 pb-4 space-y-4">
             {navContent.links.map((link, index) => (
               <Link
                 key={index}
                 href={link.url}
-                className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg"
+                className="block text-white hover:text-gray-300 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="border-t pt-4 mt-4">
+            <div className="pt-4 mt-4 border-t border-gray-700">
               <div className="px-4 py-2">
                 <LocaleSwitcher />
               </div>
-              <button className="w-full px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg">
-                {navContent.ctaText}
-              </button>
-              <button className="w-full px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg mt-2">
+              <button className="w-full text-left text-white hover:text-gray-300 py-2 border border-white px-4 rounded">
                 {navContent.loginText}
               </button>
             </div>
@@ -106,18 +93,17 @@ Builder.registerComponent(Nav, {
   inputs: [
     {
       name: 'logo',
-      type: 'file',
-      allowedFileTypes: ['png', 'jpg', 'svg'],
-      defaultValue: 'https://cdn.builder.io/api/v1/image/assets%2Ff88d5a483d6e42bb9e7990f41fc9afdf%2F56f6f2dbb0dd44b4828c83a9d1343ff7'
+      type: 'text',
+      defaultValue: 'SaaS4U'
     },
     {
       name: 'links',
       type: 'list',
       defaultValue: [
-        { label: 'Product', url: '/product' },
-        { label: 'Solutions', url: '/solutions' },
-        { label: 'Resources', url: '/resources' },
-        { label: 'Pricing', url: '/pricing' }
+        { label: 'Home', url: '/' },
+        { label: 'About', url: '/about' },
+        { label: 'Blog', url: 'https://saas4u.vercel.app/en-US/blog-post' },
+        { label: 'Contact', url: '/contact' }
       ],
       subFields: [
         { name: 'label', type: 'text' },
@@ -125,14 +111,9 @@ Builder.registerComponent(Nav, {
       ]
     },
     { 
-      name: 'ctaText',
-      type: 'text',
-      defaultValue: 'Request Demo'
-    },
-    { 
       name: 'loginText',
       type: 'text',
-      defaultValue: 'Login'
+      defaultValue: 'Dashboard'
     }
   ]
 });
