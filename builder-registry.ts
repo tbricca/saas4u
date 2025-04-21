@@ -1,4 +1,5 @@
 "use client";
+
 import "@builder.io/widgets";
 import { builder, Builder, withChildren } from "@builder.io/react";
 import { Button } from "./components/ui/button";
@@ -11,6 +12,7 @@ import ImageHero from "./components/Hero/ImageHero";
 import SplitHero from "./components/Hero/SplitHero";
 import TextHero from "./components/Hero/TextHero";
 import dynamic from "next/dynamic";
+<<<<<<< HEAD
 import { HeaderLocale } from "./components/Custom/Header-Locale";
 
 Builder.registerComponent(HeaderLocale, {
@@ -27,6 +29,53 @@ Builder.registerComponent(
     noWrap: true,
   }
 );
+=======
+
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+
+if (typeof window !== "undefined") {
+  const LocaleSelector = dynamic(() => import("./components/LocaleSelector"), {
+    ssr: false,
+  });
+
+  Builder.registerComponent(LocaleSelector, {
+    name: "LocaleSelector",
+    inputs: [
+      {
+        name: "defaultLocale",
+        type: "string",
+        defaultValue: "en",
+      },
+    ],
+  });
+
+  const BlogHeader = dynamic(() => import("./components/BlogHeader"), {
+    ssr: false,
+  });
+
+  Builder.registerComponent(BlogHeader, {
+    name: "BlogHeader",
+    inputs: [
+      {
+        name: "title",
+        type: "text",
+        defaultValue: "Welcome to the Blog!",
+      },
+    ],
+    models: ["page", "figma-imports"],
+    image:
+      "https://cdn.builder.io/api/v1/image/assets%2F8be11e7d291f43b1a4fb39e259edcdeb",
+  });
+
+  Builder.register("insertMenu", {
+    name: "Utilities",
+    items: [
+      { name: "LocaleSelector" },
+      { name: "BlogHeader" },
+    ],
+  });
+}
+>>>>>>> 85a4f0c (Update configs and packages)
 
 Builder.register("editor.settings", {
   styleStrictMode: false,
@@ -80,6 +129,7 @@ Builder.register("editor.settings", {
     ],
   },
 });
+<<<<<<< HEAD
 Builder.register("insertMenu", {
   name: "Heros",
   items: [
@@ -383,3 +433,5 @@ Builder.registerComponent(Footer, {
   name: "Footer",
 });
 
+=======
+>>>>>>> 85a4f0c (Update configs and packages)
